@@ -32,7 +32,11 @@ Page({
   onLoad: function () {},
   onShow() {
     this.changeText();
-    this.getIdenContent()
+    this.getIdenContent();
+    this.getBorderLine();
+  },
+  onReady() {
+
   },
   takePhoto() {
     ctx = wx.createCameraContext(); //初始化camera
@@ -50,15 +54,31 @@ Page({
     })
   },
   getIdenContent() {
-    wx.createSelectorQuery().select('.identification').fields({size: true}).exec((result) => {
-      console.log('result[0].width', result[0].width);
-      let maskWidth = parseInt((this.data.info.windowWidth - result[0].width)) / 2;
-      let maskHeight = parseInt((this.data.info.windowHeight - result[0].height)) / 2;
+    wx.createSelectorQuery().select('.identification').boundingClientRect(rect => {
+      console.log('rect', rect);
+      let maskWidth = parseInt((this.data.info.windowWidth - rect.width)) / 2;
+      let maskHeight = parseInt((this.data.info.windowHeight - rect.height)) / 2;
       this.setData({
-        maskWidth,
-        maskHeight
+        // autoHeight: parseInt(rect.height) + 1,
+        // maskWidth,
+        maskHeight,
+        // autoTop: rect.top
+        borderTop: parseInt(rect.top),
+        borderRight: parseInt(rect.right),
+        borderLeft: parseInt(rect.left),
+        borderBottom: parseInt(rect.bottom),
+        borderWidth: parseInt(rect.width),
+        borderHeight: parseInt(rect.height),
+      });
+    }).exec()
+  },
+  getBorderLine(){
+    wx.createSelectorQuery().select('#border-line').boundingClientRect((rect => {
+      console.log('getBorderLine', rect);
+      this.setData({
+        borderLineWidth: rect.width
       })
-    })
+    })).exec()
   },
   takeCanvas(path) { //将拍摄的照片绘制到canvas上
     wx.getImageInfo({

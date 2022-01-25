@@ -1,23 +1,59 @@
 <camera wx:if="{{openCamera}}" class="camera-photo" frame-size="large" device-position="{{devBack}}" flash="off" binderror="error" style="width:{{info.windowWidth}}px;height:{{info.windowHeight}}px;">
-	<cover-view class="page-flex" style="width:{{info.windowWidth}}px; height:{{info.windowHeight}}px;">
-    <cover-view class="header" style="width:{{info.windowWidth}}px"></cover-view>
-		<cover-view style="width:{{maskWidth}}px;height:{{canvasHeight}}px;top:{{maskHeight}}px" class="page-mask page-mask-lr absolute left"></cover-view>
-		<cover-view class="page-content" style="height:{{info.windowHeight}}px;">
-			<cover-view class="page-mask absolute top" style="width:{{info.windowWidth}}px;height:{{maskHeight}}px;"></cover-view>
-			<cover-view class="identification" style="width:{{canvasWidth}}px; height:{{canvasHeight}}px;margin:auto"></cover-view>
-			<cover-view class="page-mask absolute bottom" style="width:{{info.windowWidth}}px;height:{{maskHeight}}px">
-      </cover-view>
-		</cover-view>
-		<cover-view style="width:{{maskWidth}}px;top:{{maskHeight}}px;height:{{canvasHeight}}px;" class="page-mask page-mask-lr absolute right"></cover-view>
-    <cover-view class="footer" style="width:{{info.windowWidth}}px">
-        <cover-view class="take-icon" bindtap="takePhoto">
-        <cover-image class="take-photo" src="./take@2x.png"></cover-image>
-      </cover-view>
+  <cover-view class="page-flex" style="width:{{info.windowWidth}}px; height:{{info.windowHeight}}px;">
+  <cover-view class="header" style="width:{{info.windowWidth}}px"></cover-view>
+  <cover-view style="height:{{info.windowHeight}}px;" class="page-mask page-mask-lr"></cover-view>
+
+  <!-- 左上角边框 -->
+  <cover-view id="border-line" class="border-line absolute"
+    style="left:{{borderLeft -2}}px;top:{{maskHeight}}px"></cover-view>
+    
+  <cover-view id="border-line" class="border-line absolute rotate90"
+    style="left:{{borderLeft - (borderLineWidth / 2)}}px;top:{{maskHeight + (borderLineWidth / 2) - 3}}px"></cover-view>
+
+  <!-- 右上角边框 -->
+
+  <cover-view class="border-line absolute rotate90" style="right:{{borderLeft - (borderLineWidth / 2) + 1}}px;top:{{maskHeight + (borderLineWidth / 2) -1}}px">
+  </cover-view>
+
+  <cover-view class="border-line absolute" style="right:{{borderLeft -2}}px;top:{{maskHeight}}px">
+  </cover-view>
+
+
+  <cover-view class="page-content" style="height:{{info.windowHeight}}px;">
+    <cover-view class="page-mask" style="height:{{maskHeight}}px;"></cover-view>
+    <cover-view class="identification" style="width:{{canvasWidth}}px; height:{{canvasHeight}}px;margin:auto">
     </cover-view>
-	</cover-view>
+    <cover-view class="page-mask" style="height:{{maskHeight}}px">
+    </cover-view>
+  </cover-view>
+
+  <!-- 右下角边框 -->
+  <cover-view class="border-line absolute rotate90"
+    style="right:{{borderLeft - (borderLineWidth / 2) + 1}}px;bottom:{{maskHeight + (borderLineWidth / 2) -1}}px">
+  </cover-view>
+  <cover-view class="border-line absolute" style="right:{{borderLeft -2}}px;bottom:{{maskHeight}}px"></cover-view>
+
+  <!-- 右边遮罩层 -->
+  <cover-view style="height:{{info.windowHeight}}px;" class="page-mask page-mask-lr">
     <cover-view class="id-card">
        请将证件放在框内拍摄
     </cover-view>
+  </cover-view>
+
+  <!-- 左下角边框 -->
+  <cover-view class="border-line absolute rotate90"
+    style="left:{{borderLeft - (borderLineWidth / 2)}}px;bottom:{{maskHeight + (borderLineWidth / 2) -3}}px">
+  </cover-view>
+  <cover-view class="border-line absolute" style="left:{{borderLeft-2}}px;bottom:{{maskHeight}}px"></cover-view>
+
+  <!-- 拍摄按钮 -->
+  <cover-view class="footer" style="width:{{info.windowWidth}}px">
+    <cover-view class="take-icon" bindtap="takePhoto">
+      <cover-image class="take-photo" src="./take@2x.png"></cover-image>
+    </cover-view>
+  </cover-view>
+</cover-view>
+
 </camera>
 
 
@@ -25,12 +61,20 @@
   <canvas wx:if="{{isCanvas}}" class="canvas-style" canvas-id="myCanvas" style="width:{{canvasWidth}}px; height:{{canvasHeight}}px;"></canvas>
 </cover-view>
 
-<cover-view wx:if="{{isSuccess}}" class="photo-view" style="width:{{info.windowWidth}}px;height:{{info.windowHeight}}px;">
-<cover-image class="photo-image" src="{{srcCanvasPath}}"></cover-image>
-<cover-view class="photo-button">
-  <button bindtap="clearPhoto">重拍</button>
-  <button bindtap="confirmBack">确认</button>
-</cover-view>
+
+
+
+<!-- 
+<cover-image wx:if="{{isBaseImg}}" class="base-img"  style="width:{{info.windowWidth}}px;height:{{info.windowHeight}}px" src="{{baseImg}}"></cover-image> -->
+
+
+<cover-view wx:if="{{isSuccess}}" class="photo-view"
+  style="width:{{info.windowWidth}}px;height:{{info.windowHeight}}px;">
+  <cover-image class="photo-image" src="{{srcCanvasPath}}"></cover-image>
+  <cover-view class="photo-button">
+    <button bindtap="clearPhoto">重拍</button>
+    <button bindtap="confirmBack">确认</button>
+  </cover-view>
 </cover-view>
 
 
@@ -42,6 +86,3 @@
         <cover-view class="back" catchtap="confirmBack">绘制完成</cover-view>
     </cover-view>
 </cover-view> -->
-
-
-
