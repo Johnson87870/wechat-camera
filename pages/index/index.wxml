@@ -1,0 +1,25 @@
+<camera wx:if="{{openCamera}}" class="camera-photo" frame-size="small" device-position="{{devBack}}" flash="off" binderror="error"
+  style="width:{{info.windowWidth}}px;height:{{info.windowHeight}}px;">
+  <cover-view class="content" style="width:{{info.windowWidth}}px;height:{{info.windowHeight - 100}}px;">
+      <cover-view style="height:{{maskHeight}}px" class="top bg-mask"></cover-view>
+      <cover-view class="left bg-mask"  style="width:{{maskWidth}}px;top:{{maskHeight}}px" ></cover-view>
+      <cover-view class="identification"></cover-view>
+      <cover-view style="width:{{maskWidth}}px;top:{{maskHeight}}px" class="right bg-mask"></cover-view>
+      <cover-view style="height:{{maskHeight}}px" class="bottom bg-mask"></cover-view>
+</cover-view>
+
+ <cover-view class="footer">
+  <cover-view class="take-icon" bindtap="takePhoto">
+    <cover-image src="./take@2x.png"></cover-image>
+  </cover-view>
+ </cover-view>
+</camera>
+
+<canvas wx:if="{{isCanvas}}" class="canvas-style" canvas-id="myCanvas" style="width:{{canvasWidth}}px; height:{{canvasHeight}}px;"></canvas>
+
+<cover-image  style="height:100%;width:100%;" wx:if="{{isSuccess}}" src="{{baseImg}}"></cover-image>
+
+<button bindtap="retry">重试</button>
+
+
+
