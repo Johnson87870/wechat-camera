@@ -1,4 +1,4 @@
-.camera-photo {
+/* .camera-photo {
   position: fixed;
   z-index: 100;
   overflow: hidden;
@@ -67,7 +67,147 @@
   margin-bottom: 10px;
 }
 
+*/
+
+
+.camera-photo{
+    position: fixed;
+    z-index: 100;
+    overflow: hidden;
+}
+.page-flex{
+    display: flex;
+}
+.page-mask{
+    background-color: rgba(0,0,0,0.6);
+  }
+  .page-mask-lr{
+    width: 90rpx;
+  }
+  .page-content{
+    flex:1
+  }
+  .tackPhoto{
+    color:#fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cancel{
+    position: absolute;
+    right: 90rpx;
+}
+.id-card{
+  position: absolute;
+  font-size: 36rpx;
+  color: #fff;
+  top:53%;
+  right: 40rpx;
+  display: flex;
+  align-items: center;
+  transform-origin: right;
+  transform: rotate(90deg);
+}
+
 .canvas-style{
   margin: auto;
   overflow: hidden;
+}
+.base-img{
+  position: fixed;
+  z-index: 101;
+}
+.identification {
+  position: relative;
+  border: 6px solid green;
+  border-radius: 6px;
+}
+.identification::after{
+  clear: both;
+  content: "";
+  display: block;
+  width: 6px;
+  height: 100%;
+  background-color: green;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.success-img{
+  position: fixed;
+  z-index: 101;
+  background-color: black;
+}
+.after-img-tips{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  position: fixed;
+  bottom: 40rpx;
+  padding-left: 60rpx;
+  padding-right: 60rpx;
+  box-sizing: border-box;
+}
+.back{
+  width: 141rpx;
+  height: 141rpx;
+}
+
+.footer {
+  background-color: #000;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90px;
+}
+
+.header {
+  background-color: #000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 90px;
+}
+
+.take-icon {
+  width: 72px;
+  height: 72px;
+  margin-bottom: 10px;
+}
+
+.canvas-style{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+} 
+
+
+.photo-view {
+  background-color: #000;
+  position: relative;
+}
+
+.photo-image {
+  width: 80%;
+  height: 80vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.photo-button {
+  width: 100%;
+  height: 50px;
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
