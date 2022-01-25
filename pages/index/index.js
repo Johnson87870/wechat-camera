@@ -50,11 +50,14 @@ Page({
     })
   },
   getIdenContent() {
-    let maskWidth = parseInt((this.data.info.windowWidth - this.data.canvasWidth)) / 2;
-    let maskHeight = parseInt((this.data.info.windowHeight - this.data.canvasHeight)) / 2;
-    this.setData({
-      maskWidth,
-      maskHeight
+    wx.createSelectorQuery().select('.identification').fields({size: true}).exec((result) => {
+      console.log('result[0].width', result[0].width);
+      let maskWidth = parseInt((this.data.info.windowWidth - result[0].width)) / 2;
+      let maskHeight = parseInt((this.data.info.windowHeight - result[0].height)) / 2;
+      this.setData({
+        maskWidth,
+        maskHeight
+      })
     })
   },
   takeCanvas(path) { //将拍摄的照片绘制到canvas上
