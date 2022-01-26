@@ -59,10 +59,7 @@ Page({
       let maskWidth = parseInt((this.data.info.windowWidth - rect.width)) / 2;
       let maskHeight = parseInt((this.data.info.windowHeight - rect.height)) / 2;
       this.setData({
-        // autoHeight: parseInt(rect.height) + 1,
-        // maskWidth,
         maskHeight,
-        // autoTop: rect.top
         borderTop: parseInt(rect.top),
         borderRight: parseInt(rect.right),
         borderLeft: parseInt(rect.left),
@@ -84,7 +81,6 @@ Page({
     wx.getImageInfo({
       src: path,
       success: imgInfo => {
-        console.log('imgInfo', imgInfo);
         let {
           info
         } = this.data;
@@ -96,16 +92,7 @@ Page({
         // 我这里宽度和高度都计算了设备比，其实两个值是一样的 ，计算一个就够了
         let prxHeight = info.windowHeight / imgInfo.height; //计算设备比
         let prxWidth = info.windowWidth / imgInfo.width; //计算设备比
-        // ctx = wx.createCanvasContext("myCanvas", this);//自定义组件，需要加this
         canvaCtx = wx.createCanvasContext("myCanvas"); //自定义组件，需要加this
-        console.log('canvaCtx', canvaCtx);
-        console.log('convasX', convasX);
-        console.log('convasY', convasY);
-        console.log('canvasWidth', canvasWidth);
-        console.log('canvasHeight', canvasHeight);
-        console.log('canvaCtx', canvaCtx);
-        console.log('prxHeight', prxHeight);
-        console.log('prxWidth', prxWidth);
         canvaCtx.drawImage(path, convasXL, (convasY - 20), canvasWidth, canvasHeight, 0, 0, (parseInt(canvasWidth) * prxWidth), (parseInt(canvasHeight) * prxHeight)); //绘制到canvas上的位置，canvas的宽高等
         canvaCtx.draw(true, () => {
           wx.canvasToTempFilePath({
@@ -113,7 +100,6 @@ Page({
             quality: 1,
             canvasId: "myCanvas",
             success: canvasToPath => {
-              console.log('canvasToPath', canvasToPath.tempFilePath);
               this.setData({
                 openCamera: false,
                 isSuccess: true,

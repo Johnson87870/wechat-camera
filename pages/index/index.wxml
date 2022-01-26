@@ -1,6 +1,12 @@
 <camera wx:if="{{openCamera}}" class="camera-photo" frame-size="large" device-position="{{devBack}}" flash="off" binderror="error" style="width:{{info.windowWidth}}px;height:{{info.windowHeight}}px;">
+
   <cover-view class="page-flex" style="width:{{info.windowWidth}}px; height:{{info.windowHeight}}px;">
-  <cover-view class="header" style="width:{{info.windowWidth}}px"></cover-view>
+  <!-- 顶部黑框 -->
+  <cover-view class="header" style="width:{{info.windowWidth}}px">
+    <cover-image class="back-icon" src="./back@2x.png"></cover-image>
+  </cover-view>
+
+  <!-- 左边遮罩层 -->
   <cover-view style="height:{{info.windowHeight}}px;" class="page-mask page-mask-lr"></cover-view>
 
   <!-- 左上角边框 -->
@@ -11,7 +17,6 @@
     style="left:{{borderLeft - (borderLineWidth / 2)}}px;top:{{maskHeight + (borderLineWidth / 2) - 3}}px"></cover-view>
 
   <!-- 右上角边框 -->
-
   <cover-view class="border-line absolute rotate90" style="right:{{borderLeft - (borderLineWidth / 2) + 1}}px;top:{{maskHeight + (borderLineWidth / 2) -1}}px">
   </cover-view>
 
@@ -20,9 +25,12 @@
 
 
   <cover-view class="page-content" style="height:{{info.windowHeight}}px;">
+  <!-- 上层遮罩 -->
     <cover-view class="page-mask" style="height:{{maskHeight}}px;"></cover-view>
+    <!-- 裁剪层 -->
     <cover-view class="identification" style="width:{{canvasWidth}}px; height:{{canvasHeight}}px;margin:auto">
     </cover-view>
+    <!-- 下层遮罩 -->
     <cover-view class="page-mask" style="height:{{maskHeight}}px">
     </cover-view>
   </cover-view>
@@ -62,27 +70,11 @@
 </cover-view>
 
 
-
-
-<!-- 
-<cover-image wx:if="{{isBaseImg}}" class="base-img"  style="width:{{info.windowWidth}}px;height:{{info.windowHeight}}px" src="{{baseImg}}"></cover-image> -->
-
-
 <cover-view wx:if="{{isSuccess}}" class="photo-view"
   style="width:{{info.windowWidth}}px;height:{{info.windowHeight}}px;">
   <cover-image class="photo-image" src="{{srcCanvasPath}}"></cover-image>
   <cover-view class="photo-button">
-    <button bindtap="clearPhoto">重拍</button>
-    <button bindtap="confirmBack">确认</button>
+    <button class="cencel" bindtap="clearPhoto">重拍</button>
+    <button class="confirm" bindtap="confirmBack">确认</button>
   </cover-view>
 </cover-view>
-
-
-
-<!-- <cover-view wx:if="{{isSuccess}}" style="width:{{info.windowWidth}}px;height:{{info.windowHeight}}px;" class="success-img">
-    <cover-image style="width:{{canvasWidth}}px; height:{{canvasHeight}}px;margin:{{convasY-10}}px auto;" src="{{srcCanvasPath}}"></cover-image>
-    <cover-view class="after-img-tips" style="color:#fff">
-        <cover-view class="back" catchtap="clearPhoto">重新绘制</cover-view>
-        <cover-view class="back" catchtap="confirmBack">绘制完成</cover-view>
-    </cover-view>
-</cover-view> -->
